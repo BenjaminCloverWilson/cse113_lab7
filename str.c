@@ -222,16 +222,12 @@ void preverse(char *s)
 {
 	int i;
 	int j = str_len(s) - 1;
-	char tmp;
+	char tmp[str_len(s)];
 
-	for(i = 0; i < j; i++, j--)
+	for(i = 0; *(s + i) != '\0'; i++, j--)
 	{
-		/* I tried to implement cswap in a lot of different ways, but
-		I'm not sure how to do it completely (only half the string getting
-		reversed) without changing cswap params, so I just went with a way
-		that I know works */
-		tmp = *(s + i);
-		*(s + i) = *(s + j);
-		*(s + j) = tmp;
+		*(tmp + i) = *(s + j);
 	}
+
+	cswap(s, tmp);
 }
