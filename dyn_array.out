@@ -1,0 +1,6 @@
+Enter up to 11 integers seperated by spaces and with no more than 2 digits: 
+s[] = { 4 6 2 4 9 11 14 16 1 15 3 }
+Min: 1
+Max: 16
+Average: 7.727273
+Median: 6
