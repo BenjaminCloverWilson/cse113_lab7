@@ -1,0 +1,83 @@
+Purpose:
+    First, str.h, str.c, and test.c house recreated pointer-based versions
+    of string.h functions, regarding string manipulation; test.c specifically
+    tests these self-created versions. Next, dynamic.c places these personal
+    recreations into a dynamic memory (heap) envrionement; dynamic_strings.c
+    simply uses the standard string.h library functions to ensure that the 
+    personal functions behave the same, at least output wise. Finally,
+    dyn_array.c takes user input of a set of up to 11 integers and
+    finds the data's min, max, average, and median (and prints it) through
+    pointer-based methods/logic. dyn_array.c also utilizes dynamic memory.
+    All the .out files are simply output of their respective .c files. The
+    free.script and no_free.script simply show valgrind outputs in the
+    presence and lack of free() functions for malloc() allocations in dynamic.c.
+
+Pseudo-Code:
+    None for this lab.
+
+Conclusion:
+    a) I learned a lot about pointers, how they work with memory, how
+    to take advantage of the heap, basic string functions, and how to use
+    valgrind. I learned how to treat pointers specifically like a makeshift
+    array, often being able to store related data right next to each other.
+    I also learned that modifying values with pointers actually modifies
+    the variable/value itself at its memory location, and not a copy.
+    I also found the heap, malloc, and dynamic memory helpful when dealing
+    with pointers; I'm not sure how I could have done dyn_array.c with
+    user input without dynamically allocating the undefined pointers, as
+    NULL simply created issues with the logic I was trying to employ. Plus,
+    it was cool to use memory that was not always dedicated to these programs.
+    Valgrind can be helpful to prevent leaks when taking advantage of the heap.
+    Plus, it was easy to read, understand, and whatnot; it also kind of
+    walked through the program's major steps without gdb, which was nice.
+    Finally, I learned about basic string functions, such as strncpy, strncat
+    strlen, etc.
+
+    b) While I thought that the prelab material itself was helpful and needed
+    for this lab to get a handle on pointers and how to make them aliases to arrays,
+    I did not find pair programming particularly useful this time around. I feel
+    like I went in with a better handle on the topic conceptually, so my partner
+    was not able to really correct any mistakes I made, and I feel like I had to
+    figure them out myself. Although, that being said, I did find it helpful to
+    kind of guide them through past topics, like gdb again. So, kind of "teaching"
+    someone else helped me to fully learn it myself. I also got the impression
+    that my buddy was working on other homework during the time period where we
+    were supposed to work together; they were typing up a storm on their laptop
+    while no code was being added to the prelab; but, at the end of the day we
+    finished the prelab, so no harm, no foul. Live and let live, right?
+
+    c) Short answer here: no, I did not work with my buddy on the lab itself.
+    I found the lab pretty easy once I played around with the concepts a little,
+    except for preverse() because pointers pass by reference and not with a copy.
+    Also, no review session was discussed.
+
+    d) I had a problem with preverse() and dyn_array.c. My problem with preverse()
+    was that I was unsure on how to call cswap() into the function as per the
+    requirements. So, I initially attempted to copy a new string pointer by setting
+    equal to the inputted string pointer. Yeah, so whenever the inputted string
+    was modified, the new string in the function was modified, so only half the
+    array was getting reversed, and the second half remained constant. I fixed this
+    by creating an independent tmp[] as arrays and pointers can be aliases, and
+    I was having trouble initializing a *tmp at a certain length without dynamic
+    allocation. I could then manipuate s without also manipulating tmp values
+    while calling cswap. As for dyn_array.c, I was having trouble with converting
+    the fgets input array into the int pointer that I could use to manipuate
+    the inputted data. I solved this by creating a heap reservation for a really
+    small char *tmp pointer, to house up to the largest digits. Then I broke the
+    inputted data into individual numbers, separated by spaces as markers,
+    and indexed each number through the tmp proxy using atoi() into the lab
+    requested int *s pointer to call my needed pointer based functions. And,
+    there might be a better way or it could be simple, but I'm damn proud of how
+    I implemented user input for it. :)
+
+    e) Well, to be honest, for median() in dyn_array, I basically just copied
+    a previous sort() function that I created for lab3, but made it pointer based.
+    But, I didn't include the while loop to sort out repeat numbers. But, for some
+    god damn reason it actually sorts repeat numbers properly, so I that could cause
+    issues with larger inputs of numbers; if so, put a while loop there and it should
+    work, but if it ain't broke don't fix I guess. Also, for median(), it was giving
+    returns of values not in the inputted data for some reason. So, I put a really
+    shakey for loop that finds the value closest to that return value and makes
+    that the median; it works from what I could see/tested, but I would like to
+    create a better algorithm/formula that finds this properly for data with
+    large disparities between each point.
